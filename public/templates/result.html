@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/global.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/result.css')}}"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/">
+        <picture>
+          <svg
+            width="70"
+            height="70"
+            viewBox="0 0 646 566"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M86 400.5V1L244 97H397.5L546 0L547 404H580.5L563 417L646 434L315 565.5L0 426L74 415.5L59 400.5H86Z"
+              fill="black"
+            />
+            <path d="M426.5 114L515.5 56.5V178.5L426.5 114Z" fill="white" />
+            <path d="M116.5 178V55.5L209.5 111.5L116.5 178Z" fill="white" />
+            <path
+              d="M116.5 410.5V214.5L240 127.5H392L515.5 215V411L316 356L116.5 410.5Z"
+              fill="white"
+            />
+            <path
+              d="M285 396L112.5 443.5L316 533.5L531.5 447L343 396L316 440L285 396Z"
+              fill="white"
+            />
+          </svg>
+        </picture>
+        <h1>Vulpi Remove<span>BG</span></h1>
+      </a>
+    </header>
+
+    <main>
+        <article class="conteiner-result">
+          <nav class="result-navigation">
+            <div class="result-box">
+              <input type="radio" name="result-navigation" class="result-button" checked id="btn-resultado">
+              <label for="btn-resultado">Resultado</label>
+            </div>
+
+            <div class="result-box">
+              <input type="radio" name="result-navigation" class="result-button" id="btn-original">
+              <label for="btn-original">Original</label>
+            </div>
+            
+          </nav>
+          <div class="comteudo-resultado">
+            <div>
+              <section id="img-original" class="result-image-box">
+                <img src="{{ input_image_path }}" alt="Imagem Original" >
+              </section>
+          
+              <section id="img-resultado" class="result-image-box">
+               <img src="{{ output_image_path }}" alt="Imagem Sem Fundo" >
+              </section>
+            </div>
+        
+            <section class="download-box">
+              <h1>Faça download da imagem sem fundo:</h1>
+              <a href="{{ output_download_path }}" download="Imagem_Sem_Fundo.png" class="download-btn">Download</a>
+            </section>
+          </div>
+        </article>
+    </main>
+
+    <footer>
+        <div class="wave">
+          <div class="wave1"></div>
+          <div class="wave2"></div>
+          <div class="wave3"></div>
+        </div>
+        <div class="footer-box">
+          <div>
+            <p>Obrigado por visitar meu site. Conecte-se comigo nas redes sociais.</p>
+          </div>
+          <div class="footer-content">
+            <div>
+              <picture>
+                <img src="{{url_for('static', filename='svg/logo-footer.svg')}}" alt="Logo do Desenvolvedor">
+              </picture>
+            </div>
+            <div>
+              <h2>Contate-me</h2>
+              <div class="footer-links">
+                <a target="_blank" href="https://github.com/GabsGsm"><img src="{{url_for('static', filename='svg/icon-github.svg')}}" alt="icone do github"></a>
+                <a target="_blank" href="https://www.instagram.com/gabs.gsm19/"><img src="{{url_for('static', filename='svg/icon-instagran.svg')}}" alt="icone do instagran"></a>
+                <a target="_blank" href="https://www.linkedin.com/in/gm21/"><img src="{{url_for('static', filename='svg/icon-lk.svg')}}" alt="icone do linkedin"></a>
+              </div>
+            </div>
+          </div>
+          <div>
+            <p>&copy; Gabriel Martins 2023</p>
+          </div>
+        </div>
+      </footer>
+
+    <script src="{{url_for('static', filename='js/result.js')}}"></script>
+</body>
+</html>
+

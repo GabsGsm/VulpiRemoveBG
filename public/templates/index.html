@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Upload de Imagem</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/global.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/index.css')}}"
+    />
+    <link
+    rel="stylesheet"
+    href="{{url_for('static', filename='css/load.css')}}"
+  />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&family=Roboto:ital,wght@0,100;0,300;0,500;1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div id="overlay" class="hidden">
+      <div class="loadingspinner">
+        <div id="square1"></div>
+        <div id="square2"></div>
+        <div id="square3"></div>
+        <div id="square4"></div>
+        <div id="square5"></div>
+      </div>
+    </div>
+
+    <header class="site-header">
+      <a href="/">
+        <picture>
+          <svg
+            width="70"
+            height="70"
+            viewBox="0 0 646 566"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M86 400.5V1L244 97H397.5L546 0L547 404H580.5L563 417L646 434L315 565.5L0 426L74 415.5L59 400.5H86Z"
+              fill="black"
+            />
+            <path d="M426.5 114L515.5 56.5V178.5L426.5 114Z" fill="white" />
+            <path d="M116.5 178V55.5L209.5 111.5L116.5 178Z" fill="white" />
+            <path
+              d="M116.5 410.5V214.5L240 127.5H392L515.5 215V411L316 356L116.5 410.5Z"
+              fill="white"
+            />
+            <path
+              d="M285 396L112.5 443.5L316 533.5L531.5 447L343 396L316 440L285 396Z"
+              fill="white"
+            />
+          </svg>
+        </picture>
+        <h1>Vulpi Remove<span>BG</span></h1>
+      </a>
+    </header>
+
+    <main>
+      <article class="main-container grid-container">
+        <div class="presentation-container-outer">
+          <div class="presentation-container">
+            <header>
+              <h2>Remova fundos de imagens</h2>
+            </header>
+            <div>
+              <p>Remova facilmente o fundo das suas fotos gratuitamente</p>
+            </div>
+        </div>
+        </div>
+        <div class="upload-container-outer">
+          <div class="upload-container">
+            <form
+            action="/process"
+            method="POST"
+            enctype="multipart/form-data"
+            id="upload-form"
+          >
+            <label for="file-input" class="upload-btn"
+              ><p>Faça seu upload</p>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24"
+                viewBox="0 -960 960 960"
+                width="24"
+              >
+                <path fill="#fff"
+                  d="M440-320v-326L336-542l-56-58 200-200 200 200-56 58-104-104v326h-80ZM240-160q-33 0-56.5-23.5T160-240v-120h80v120h480v-120h80v120q0 33-23.5 56.5T720-160H240Z"
+                />
+              </svg>
+            </label>
+            <input
+              type="file"
+              name="image"
+              accept=".jpg, .jpeg, .png"
+              id="file-input"
+              onchange="uploadImage()"
+            />
+          </form>
+          </div>
+        </div>
+      </article>
+
+      <article class="main-container step-container">
+        <header class="steps-spacing steps-title">
+          <h2>Como remover o fundo da imagem?</h2>
+        </header>
+        <div class="steps-spacing step-content">
+          <section class="step-box">
+            <h3>1. Selecione</h3>
+            <p>
+              Para obter o melhor resultado possível, escolha uma imagem que
+              tenha contorno nítido e sem sobreposições.
+            </p>
+            <p>
+              Seu formato de imagem pode ser PNG ou JPG. Oferecemos suporte a
+              todas as dimensões de imagem.
+            </p>
+          </section>
+          <section class="step-box">
+            <h3>2. Remova</h3>
+            <p>
+              Faça o upload de uma foto e remova o plano de fundo
+              automaticamente na hora.
+            </p>
+          </section>
+          <section class="step-box">
+            <h3>3. Continue</h3>
+            <p>
+              Faça o download da nova imagem com fundo transparente no formato
+              PNG e salve, compartilhe ou continue a editar.
+            </p>
+          </section>
+        </div>
+        <div class="bg-container steps-spacing">
+          <svg
+            width="1440"
+            height="425"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <rect width="1440" height="425" fill="#FF9900" />
+          </svg>
+        </div>
+      </article>
+
+      <article class="main-container grid-container">
+        <div class="about-text-container">
+          <div class="about-text-box">
+            <header>
+              <h2>Faça o upload, remova o background e baixe instantaneamente</h2>
+            </header>
+            <div>
+              <p>
+                Transforme suas fotos com vulpi RemoveGB! Destaque o elementocom um
+                fundo transparente, para que você possa colocá-lo em uma série de
+                novos designs e finalidades. Experimente agora e coloque sua imagem
+                em um ambiente totalmente diferente!
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="about-image-container">
+          <picture class="about-image-box">
+            <img class="about-image"
+              src="{{url_for('static', filename='svg/samurai.svg')}}"
+              alt="Exemplo de imagem com fundo removido"
+            />
+          </picture>
+        </div>
+      </article>
+    </main>
+
+    <footer>
+      <div class="wave">
+        <div class="wave1"></div>
+        <div class="wave2"></div>
+        <div class="wave3"></div>
+      </div>
+      <div class="footer-box">
+        <div>
+          <p>Obrigado por visitar meu site. Conecte-se comigo nas redes sociais.</p>
+        </div>
+        <div class="footer-content">
+          <div>
+            <picture>
+              <img src="{{url_for('static', filename='svg/logo-footer.svg')}}" alt="Logo do Desenvolvedor">
+            </picture>
+          </div>
+          <div>
+            <h2>Contate-me</h2>
+            <div class="footer-links">
+              <a target="_blank" href="https://github.com/GabsGsm"><img src="{{url_for('static', filename='svg/icon-github.svg')}}" alt="icone do github"></a>
+              <a target="_blank" href="https://www.instagram.com/gabs.gsm19/"><img src="{{url_for('static', filename='svg/icon-instagran.svg')}}" alt="icone do instagran"></a>
+              <a target="_blank" href="https://www.linkedin.com/in/gm21/"><img src="{{url_for('static', filename='svg/icon-lk.svg')}}" alt="icone do linkedin"></a>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p>&copy; Gabriel Martins 2023</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+  </body>
+</html>
